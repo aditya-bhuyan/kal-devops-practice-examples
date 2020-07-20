@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  ASIA: NILE
+  NORTH_AMERICA: MISSISIPI
+kind: ConfigMap
+metadata:
+  name: rivers
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: mybox
+  name: mybox
+spec:
+  containers:
+  - command: [ "/bin/sh", "-c", "env; sleep 120" ]
+    image: busybox
+    name: mybox
+    env:
+	  - name: ASIAN_RIVER
+	    valueFrom:
+	     configMapKeyRef:
+		  name: rivers
+		  key: ASIA
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
