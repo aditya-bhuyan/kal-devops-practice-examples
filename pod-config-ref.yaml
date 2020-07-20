@@ -20,9 +20,9 @@ spec:
     env:
     - name: ASIAN_RIVER
       valueFrom:
-	configMapKeyRef:
-	 name: rivers
-	 key: ASIA
+        configMapKeyRef:
+         name: rivers
+         key: ASIA
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Never
