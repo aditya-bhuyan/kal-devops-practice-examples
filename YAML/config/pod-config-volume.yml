@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  ASIA: NILE
+  NORTH_AMERICA: MISSISIPI
+kind: ConfigMap
+metadata:
+  name: rivers
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mybox
+  name: mybox
+spec:
+  volumes:
+  - name: config-volume
+    configMap:
+     name: rivers
+  containers:
+  - command: [ "/bin/sh", "-c", "ls /etc/config/; sleep 120" ]
+    image: busybox
+    name: mybox
+    volumeMounts:
+    - name: config-volume
+      mountPath: "/etc/config"
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

@@ -1,0 +1,23 @@
+#k run --image=busybox --restart=Never mybox --env=time=10 sh --dry-run -o yaml   --  -c 'echo $(time)'
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mybox
+  name: mybox
+spec:
+  containers:
+  - args:
+    - sh
+    - -c
+    - echo $(time)
+    env:
+    - name: time
+      value: "10"
+    image: busybox
+    name: mybox
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

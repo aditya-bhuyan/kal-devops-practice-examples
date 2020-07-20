@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  KA: Bangalore
+  WB: Kolkata
+kind: ConfigMap
+metadata:
+  name: states
+#k create cm states --from-literal=KA=Bangalore --from-literal=WB=Kolkata --dry-run -o yaml

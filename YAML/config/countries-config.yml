@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  ASIA: INDIA
+  AUSTRALIA: AUSTRALIA
+  EUROPE: RUSSIA
+kind: ConfigMap
+metadata:
+  name: countries
+#k create cm countries --from-literal=ASIA=INDIA --from-literal=AUSTRALIA=AUSTRALIA --from-literal=EUROPE=RUSSIA  --dry-run -o yaml
