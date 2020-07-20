@@ -18,11 +18,11 @@ spec:
     image: busybox
     name: mybox
     env:
-	  - name: ASIAN_RIVER
-	    valueFrom:
-	     configMapKeyRef:
-		  name: rivers
-		  key: ASIA
+    - name: ASIAN_RIVER
+      valueFrom:
+	configMapKeyRef:
+	 name: rivers
+	 key: ASIA
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Never
