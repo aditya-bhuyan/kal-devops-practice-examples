@@ -11,7 +11,8 @@ spec:
   - args:
     - sh
     - -c
-    - echo $(time); sleep 200
+    - echo $(time)
+    - sleep 200
     env:
     - name: time
       value: "10"
