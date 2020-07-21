@@ -8,11 +8,7 @@ metadata:
   name: mybox
 spec:
   containers:
-  - args:
-    - sh
-    - -c
-    - echo $(time)
-    - sleep 200
+  - command: [ "/bin/sh", "-c", "env; sleep 120" ]
     env:
     - name: time
       value: "10"
