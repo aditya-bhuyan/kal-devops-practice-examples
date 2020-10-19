@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: box1
+  name: box1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: box1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: box1
+    spec:
+      volumes:
+      - name: log-volume
+        hostPath: 
+		  path: "/var/tmp/logs"
+      containers:
+      - image: k8s.gcr.io/busybox
+        args:
+        - /bin/sh
+        - -c
+        - while true;do echo "${HOSTNAME}-time" > /var/tmp/box1/"${HOSTNAME}".txt;done
+        name: box1
+        volumeMounts:
+        - name: log-volume
+          mountPath: "/var/tmp/box1"
+        resources: {}
+status: {}

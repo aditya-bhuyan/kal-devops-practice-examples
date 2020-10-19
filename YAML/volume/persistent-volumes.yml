@@ -1,0 +1,80 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: log-persistent-volume
+  labels:
+    type: local
+spec:
+  volumeMode: Filesystem
+  storageClassName: slow
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/logs"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: log-persistent-claim
+spec:
+  volumeMode: Filesystem
+  storageClassName: slow
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pages
+  name: pages
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pages
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: pages
+    spec:
+      volumes:
+      - name: log-volume
+        persistentVolumeClaim:
+          claimName: log-persistent-claim
+      containers:
+      - image: adityapratapbhuyan/kube-pages-app:basic
+        name: kube-pages-app
+        volumeMounts:
+        - name: log-volume
+          mountPath: "/var/tmp/"
+        env:
+        - name: spring.jpa.hibernate.ddl-auto
+          value: "update"
+        - name: management.endpoint.health.show-details
+          value: "always"
+        - name: management.endpoints.web.exposure.include
+          value: "*"
+        - name: logging.file.name
+          value: "/var/tmp/kube-pages-workshop-${HOSTNAME}.log"
+        ports:
+        - containerPort: 8080
+		readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 30
+        livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 30
+        resources: {}
+status: {}

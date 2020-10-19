@@ -9,7 +9,6 @@ metadata:
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
     run: mybox
   name: mybox
@@ -19,7 +18,7 @@ spec:
     configMap:
      name: rivers
   containers:
-  - command: [ "/bin/sh", "-c", "ls /etc/config/; sleep 120" ]
+  - command: [ "/bin/sh", "-c", "for variable in 1 2 3 4 5; do cat  /etc/config/ASIA;sleep 15;done;  sleep 300;" ]
     image: busybox
     name: mybox
     volumeMounts:
