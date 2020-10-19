@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mybox
+  name: mybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mybox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mybox
+    spec:
+      containers:
+      - image: adityapratapbhuyan/k8s-docker-config:1.0
+        name: k8s-docker-config
+        env:
+        - name: DB_PASSWORD
+          value: whatisthat
+        - name: ASIA
+          value: BHUTAN
+        resources: {}
+status: {}
