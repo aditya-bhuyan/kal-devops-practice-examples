@@ -69,7 +69,7 @@ spec:
             tcpSocket:
               port: 8080
             initialDelaySeconds: 15
-            periodSeconds: 30
+            periodSeconds: 25
         livenessProbe:
             httpGet:
               path: /actuator/health
