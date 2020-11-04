@@ -65,7 +65,7 @@ spec:
           value: "/var/tmp/kube-pages-workshop-${HOSTNAME}.log"
         ports:
         - containerPort: 8080
-		readinessProbe:
+	readinessProbe:
             tcpSocket:
               port: 8080
             initialDelaySeconds: 15
