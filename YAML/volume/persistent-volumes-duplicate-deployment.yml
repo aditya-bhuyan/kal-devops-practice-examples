@@ -1,48 +1,19 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: log-persistent-volume
-  labels:
-    type: local
-spec:
-  volumeMode: Filesystem
-  storageClassName: slow
-  capacity:
-    storage: 500Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/logs"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: log-persistent-claim
-spec:
-  volumeMode: Filesystem
-  storageClassName: slow
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: pages
-  name: pages
+    app: pages1
+  name: pages1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pages
+      app: pages1
   strategy: {}
   template:
     metadata:
       labels:
-        app: pages
+        app: pages1
     spec:
       volumes:
       - name: log-volume
@@ -50,7 +21,7 @@ spec:
           claimName: log-persistent-claim
       containers:
       - image: adityapratapbhuyan/kube-pages-app:basic
-        name: kube-pages-app
+        name: kube-pages-app1
         volumeMounts:
         - name: log-volume
           mountPath: "/var/tmp/"

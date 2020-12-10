@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: mybox
   name: mybox
@@ -13,14 +12,23 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: mybox
     spec:
       containers:
       - image: adityapratapbhuyan/k8s-docker-config:1.0
         name: k8s-docker-config
+        envFrom:
+        - configMapRef:
+            name: values
+        - configMapRef:
+            name: ui
         env:
+        - name: ENGLISH
+          valueFrom:
+           configMapKeyRef:
+            name: languages
+            key: english
         - name: DB_PASSWORD
           value: whatisthat
         - name: ASIA
