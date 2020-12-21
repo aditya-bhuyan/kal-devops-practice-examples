@@ -20,7 +20,7 @@ spec:
         name: k8s-docker-config
         envFrom:
         - configMapRef:
-            name: games
+            name: values
         - configMapRef:
             name: ui
         env:
@@ -30,10 +30,7 @@ spec:
             name: languages
             key: english
         - name: DB_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: dbdetails
-              key: DB_PASSWORD
+          value: whatisthat
         - name: ASIA
           value: BHUTAN
         resources: {}
