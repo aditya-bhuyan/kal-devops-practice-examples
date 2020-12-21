@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  ENGLISH: "26"
+  GREEK: "24"
+kind: ConfigMap
+metadata:
+  name: languages
+  #k create cm languages --from-literal=ENGLISH=26 --from-literal=GREEK=24 --dry-run -o yaml >languages-cm.yaml

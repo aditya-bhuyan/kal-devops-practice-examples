@@ -28,7 +28,7 @@ spec:
           valueFrom:
            configMapKeyRef:
             name: languages
-            key: english
+            key: ENGLISH 
         - name: DB_PASSWORD
           valueFrom: 
             secretKeyRef:
