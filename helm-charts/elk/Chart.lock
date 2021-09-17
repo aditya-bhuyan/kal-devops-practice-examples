@@ -1,0 +1,12 @@
+dependencies:
+- name: logstash
+  repository: https://charts.bitnami.com/bitnami
+  version: 3.6.5
+- name: kibana
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.0.2
+- name: elasticsearch
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.0.3
+digest: sha256:dca4852244592dfe66fe6fcf65a8945cabbb1fa1539c1adfb8e3065ab27ed9c8
+generated: "2021-09-16T16:44:09.609085599+01:00"

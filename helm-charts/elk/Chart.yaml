@@ -1,0 +1,16 @@
+apiVersion: v2
+name: ELK
+description: A Helm chart for Elestic Search, Logstash, Kibana
+type: application
+version: 0.1.0
+appVersion: "1.0"
+dependencies:
+- name: logstash
+  version: " 3.6.5"
+  repository: "https://charts.bitnami.com/bitnami"
+- name: kibana
+  version: "9.0.2"
+  repository: "https://charts.bitnami.com/bitnami"
+- name: elasticsearch
+  version: "17.0.3"
+  repository: "https://charts.bitnami.com/bitnami"
