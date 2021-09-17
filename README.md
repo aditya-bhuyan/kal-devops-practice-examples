@@ -1,2 +1,1 @@
-# kube-ws-configs
-Config Files YAML files for Kubernetes Workshop
+Different Files for KAL and KAL Devops Course
