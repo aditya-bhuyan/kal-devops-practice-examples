@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: job-6
+spec:
+  jobTemplate:
+    metadata:
+      name: job-6
+    spec:
+      template:
+        metadata:
+        spec:
+          volumes:
+            - name: tz-config
+              hostPath:
+                path: /usr/share/zoneinfo/Europe/Moscow
+          containers:
+          - image: busybox
+            name: job-6
+            imagePullPolicy: IfNotPresent
+            command: ["/bin/sh"]
+            args: ["-c","echo Time: 3.30 pm. It is break time. Lets stretch out a bit or have a coffee!"]
+            volumeMounts:
+              - name: tz-config
+                mountPath: /etc/localtime
+          restartPolicy: OnFailure
+  schedule: '53 04 * * *'

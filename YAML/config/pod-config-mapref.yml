@@ -31,7 +31,3 @@ spec:
        name: rivers
     - configMapRef:
        name: countries
-    resources: {}
-  dnsPolicy: ClusterFirst
-  restartPolicy: Never
-status: {}

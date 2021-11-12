@@ -1,0 +1,67 @@
+apiVersion: v1
+data:
+  INDIA: GANGES
+  CHINA: WHANGHO
+kind: ConfigMap
+metadata:
+  name: rivers
+---
+apiVersion: v1
+data:
+  ASIA: INDIA
+  AUSTRALIA: AUSTRALIA
+  EUROPE: RUSSIA
+kind: ConfigMap
+metadata:
+  name: countries
+---
+apiVersion: v1
+data:
+  IRAN: WRESTLING
+  SPAIN: BULLFIGHTING
+  RUSSIA: ICEHOCKEY
+kind: ConfigMap
+metadata:
+  name: games
+---
+apiVersion: v1
+data:
+  DB_PASSWORD: d2hhdGlzaXQ=
+  DB_USER: cm9vdA==
+kind: Secret
+metadata:
+  name: dbdetails
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: mybox
+  name: mybox
+spec:
+  volumes:
+    - name: config-volume
+      configMap:
+        name: games
+  containers:
+  - command: [ "/bin/sh", "-c", "env; sleep 1200" ]
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    name: mybox
+    envFrom:
+    - configMapRef:
+       name: countries
+    env:
+    - name: ASIAN_RIVER
+      valueFrom:
+        configMapKeyRef:
+         name: rivers
+         key: INDIA
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: DB_PASSWORD
+          name: dbdetails
+    volumeMounts:
+      - mountPath: /etc/data
+        name: config-volume
