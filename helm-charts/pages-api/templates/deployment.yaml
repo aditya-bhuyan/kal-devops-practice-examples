@@ -15,9 +15,9 @@ spec:
       labels:
         app: pages
     spec:
-      containers:
-        - image: dellcloud/pages:1.0
+    containers:
+        - image: dellcloud/pages:monitor
           name: pages
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+          - containerPort: 8080
