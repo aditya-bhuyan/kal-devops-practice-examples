@@ -1,13 +1,12 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: cronjob-with-ttl
+  name: cronjob-without-ttl
 spec:
   jobTemplate:
     metadata:
       name: cronjob
     spec:
-      ttlSecondsAfterFinished: 0
       template:
         metadata:
         spec:

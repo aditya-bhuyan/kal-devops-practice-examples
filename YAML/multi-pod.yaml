@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: multi-pod
+  name: multi-pod
+spec:
+  containers:
+  - name: hostpod
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    args:
+    - sh
+    - -c 
+    - while true; do echo "hostpod------${HOSTNAME}";sleep 5;done
+  - args:
+    - sh
+    - -c
+    - while true;do echo "datepod----$(date)";sleep 5;done
+    image: alpine
+    imagePullPolicy: IfNotPresent
+    name: datepod

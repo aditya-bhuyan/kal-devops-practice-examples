@@ -1,0 +1,18 @@
+deployment:
+   name: pages-api
+   container:
+      name: pages-app
+
+env:
+  environment: DEV
+  users: 300
+
+replica.count: 3
+serviceConf:
+  - name: protocol
+    value: TCP
+  - name: targetPort
+    value: 8080
+
+
+

@@ -1,0 +1,18 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: job-3
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: job-3
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: job-3
+          image: alpine
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh"]
+          args: ["-c", "if [ \"$(shuf -i 1-6 -n 1)\" = \"6\" ]; then exit 0; else exit 1; fi"]

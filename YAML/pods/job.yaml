@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: print-job
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        -  echo How are you;sleep 120;
+        - --imagePullPolicy=IfNotPresent
+        image: alpine
+        name: print-job
+        imagePullPolicy: IfNotPresent
+        resources: {}
+      restartPolicy: Never
+status: {}

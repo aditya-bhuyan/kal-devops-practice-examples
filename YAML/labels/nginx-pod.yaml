@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: microservice
+    tier: frontend
+    type: webservice
+  name: nginx
+spec:
+  containers:
+  - image: nginx:perl
+    imagePullPolicy: IfNotPresent
+    name: nginx
+

@@ -1,0 +1,19 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: twice-complete
+spec:
+  tt
+  completions: 5
+  parallelism: 1
+  template:
+    metadata:
+      name: twice-complete
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: twice-complete
+          image: alpine
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh"]
+          args: ["-c", "echo ${HOSTNAME}"]

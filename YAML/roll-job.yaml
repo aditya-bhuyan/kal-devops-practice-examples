@@ -1,0 +1,17 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: failed-job
+spec:
+  activeDeadlineSeconds: 5
+  template:
+    metadata:
+      name: failed-job
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: failed-job
+          image: alpine
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh"]
+          args: ["-c", "exit 1"]

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: microservice
+    tier: backend
+    type: messaging
+  name: rabbitmq
+spec:
+  containers:
+  - image: rabbitmq
+    imagePullPolicy: IfNotPresent
+    name: rabbitmq

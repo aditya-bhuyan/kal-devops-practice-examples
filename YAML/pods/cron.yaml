@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: print-cron-job
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: print-cron-job
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - sh
+            - -c
+            - echo How are you;sleep 30
+            image: alpine
+            name: print-cron-job
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
+status: {}

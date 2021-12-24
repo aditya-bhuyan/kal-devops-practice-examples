@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: command-pod
+  name: command-pod
+spec:
+  containers:
+  - args:
+    - sh
+    - -c
+    - date;sleep 120
+    image: alpine
+    name: command-pod

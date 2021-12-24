@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: env-pod
+  name: env-pod
+spec:
+  containers:
+  - image: alpine
+    imagePullPolicy: IfNotPresent
+    env:
+    - name: module
+      value: pod
+    - name: workshop
+      value: Kubernetes
+    name: env-pod
+    command: ["sh","-c","echo '$(module) and $(workshop)';sleep 120"]

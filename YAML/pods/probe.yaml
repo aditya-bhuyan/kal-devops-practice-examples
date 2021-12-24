@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probing-pod
+spec:
+  containers:
+  - image: dellcloud/pages:1.0
+    name: probing
+    livenessProbe:
+      httpGet:
+        port: 8080
+    readinessProbe:
+      initialDelaySeconds: 30
+      tcpSocket:
+        port: 8080

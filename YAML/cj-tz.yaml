@@ -1,13 +1,12 @@
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: cronjob-with-ttl
+  name: job-6
 spec:
   jobTemplate:
     metadata:
-      name: cronjob
+      name: job-6
     spec:
-      ttlSecondsAfterFinished: 0
       template:
         metadata:
         spec:
@@ -17,7 +16,7 @@ spec:
                 path: /usr/share/zoneinfo/Europe/Moscow
           containers:
           - image: busybox
-            name: cronjob
+            name: job-6
             imagePullPolicy: IfNotPresent
             command: ["/bin/sh"]
             args: ["-c","echo Time: 3.30 pm. It is break time. Lets stretch out a bit or have a coffee!"]
@@ -25,4 +24,4 @@ spec:
               - name: tz-config
                 mountPath: /etc/localtime
           restartPolicy: OnFailure
-  schedule: '*/1 * * * *'
+  schedule: '53 04 * * *'
