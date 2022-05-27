@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: pages
+    access: external
   name: pages
 spec:
   ports:

@@ -15,4 +15,4 @@ spec:
       value: whatisthat
     image: adityapratapbhuyan/k8s-docker-config:1.0
     name: mybox
- 
+    imagePullPolicy: IfNotPresent

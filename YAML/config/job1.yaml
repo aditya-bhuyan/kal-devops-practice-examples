@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  template:
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh"]
+        args: ["-c","date"]
+      restartPolicy: OnFailure

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: pages
+name: pages-chart
 description: A Helm chart for Pages Application
 type: application
 version: 0.1.0

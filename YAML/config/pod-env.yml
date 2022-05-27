@@ -7,9 +7,12 @@ metadata:
   name: mybox
 spec:
   containers:
-  - command: [ "/bin/sh", "-c", "env; sleep 120" ]
+  - command: [ "/bin/sh", "-c", 'echo "${workshop}"; sleep 10' ]
+    imagePullPolicy: IfNotPresent
     env:
-    - name: time
-      value: "10"
+    - name: workshop
+      value: kubernetes
+    - name: duration
+      value: 5days
     image: busybox
     name: mybox
